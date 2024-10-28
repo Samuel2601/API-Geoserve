@@ -1,0 +1,13 @@
+[
+  {
+    "name": "default",
+    "type": "postgres",
+    "host": "154.38.182.200",
+    "port": 5432,
+    "username": "catastro",
+    "password": "Teclado2024/*",
+    "database": "",
+    "synchronize": false,
+    "entities": ["entities/*.js"]
+  }
+]

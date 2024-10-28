@@ -58,6 +58,10 @@ $ pnpm run test:e2e
 $ pnpm run test:cov
 ```
 
+## API schema GEOSERVER
+$ npx typeorm-model-generator -h 154.38.182.200 -p 5432 -d sarg_catastro -u catastro -x 'Teclado2024/*' -e postgres -o ./src/entities -s public
+
+
 ## Resources
 
 Check out a few resources that may come in handy when working with NestJS:
