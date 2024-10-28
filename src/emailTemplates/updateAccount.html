@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Actualización de Información</title>
+    <style>
+        body {
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+        .email-wrapper {
+            width: 100%;
+            background-color: #f4f4f4;
+            padding: 40px 0;
+        }
+        .container {
+            background-color: #ffffff;
+            max-width: 600px;
+            margin: auto;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            padding: 30px 20px;
+        }
+        .header {
+            background-color: #28a745;
+            padding: 30px 20px;
+            color: #ffffff;
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 28px;
+        }
+        .content {
+            padding: 30px 20px;
+        }
+        .content h2 {
+            font-size: 22px;
+            color: #333;
+            margin-bottom: 20px;
+        }
+        .content p {
+            font-size: 16px;
+            color: #666;
+            line-height: 1.6;
+        }
+        .content ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 20px 0;
+            text-align: left;
+        }
+        .content ul li {
+            background-color: #f9f9f9;
+            margin: 10px 0;
+            padding: 10px 15px;
+            border-radius: 5px;
+            color: #333;
+        }
+        .content ul li strong {
+            color: #007BFF;
+        }
+        .button {
+            display: inline-block;
+            padding: 15px 30px;
+            background-color: #28a745;
+            color: #ffffff;
+            text-decoration: none;
+            border-radius: 25px;
+            font-weight: bold;
+            margin-top: 20px;
+            transition: background-color 0.3s ease;
+        }
+        .button:hover {
+            background-color: #218838;
+        }
+        .divider {
+            height: 1px;
+            background-color: #eaeaea;
+            margin: 40px 0;
+        }
+        .footer {
+            padding: 20px;
+            background-color: #f4f4f4;
+            font-size: 14px;
+            color: #999;
+        }
+        .footer p {
+            margin: 5px 0;
+        }
+        .footer a {
+            color: #007BFF;
+            text-decoration: none;
+        }
+        .footer a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="email-wrapper">
+        <div class="container">
+            <!-- Header -->
+            <div class="header">
+                <h1>Actualización de Información</h1>
+            </div>
+
+            <!-- Main content -->
+            <div class="content">
+                <h2>Hola {{userName}},</h2>
+                <p>Te informamos que tu información ha sido actualizada exitosamente. A continuación se detallan los cambios:</p>
+                
+                <ul>
+                    {{#if updatedFields.name}}
+                        <li><strong>Nombre:</strong> {{updatedFields.name}}</li>
+                    {{/if}}
+                    {{#if updatedFields.email}}
+                        <li><strong>Email:</strong> {{updatedFields.email}}</li>
+                    {{/if}}
+                    {{#if updatedFields.phone}}
+                        <li><strong>Teléfono:</strong> {{updatedFields.phone}}</li>
+                    {{/if}}
+                    {{#if updatedFields.password}}
+                        <li><strong>Contraseña:</strong> Se ha cambiado, pero no se puede mostrar por razones de seguridad.</li>
+                    {{/if}}
+                </ul>
+
+                <p>Si no realizaste esta actualización, por favor contáctanos de inmediato.</p>
+            </div>
+
+            <!-- Divider -->
+            <div class="divider"></div>
+
+            <!-- Footer -->
+       
