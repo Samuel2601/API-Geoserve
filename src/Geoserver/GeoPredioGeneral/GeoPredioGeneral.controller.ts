@@ -1,7 +1,7 @@
 import {Controller, Get, Post, Put, Delete, Param, Body, Query, DefaultValuePipe, ParseIntPipe} from '@nestjs/common';
 import {GeoPredioGeneralService} from './GeoPredioGeneral.service';
 import {GeoPredioGeneral} from 'src/entities/entities/GeoPredioGeneral';
-import { parseFilters } from './GeoPredioGeneral.dto';
+import {parseFilters} from './GeoPredioGeneral.dto';
 
 @Controller('geo-predio-general')
 export class GeoPredioGeneralController {
@@ -13,12 +13,14 @@ export class GeoPredioGeneralController {
 		@Query('limit', new DefaultValuePipe(10), ParseIntPipe) limit: number,
 		@Query('filter') filter: string,
 		@Query('search') search?: string,
+		@Query('fields') fields?: string,
 	) {
 		// Convertir el filtro de cadena a objeto
 		const filters = parseFilters(filter);
-		return this.geoPredioGeneralService.findAll(page, limit, filters, search);
+		// Convertir string de campos a array
+		const selectFields = fields ? (fields.split(',').map((field) => field.trim()) as (keyof GeoPredioGeneral)[]) : [];
+		return this.geoPredioGeneralService.findAll(page, limit, filters, search,selectFields);
 	}
-
 
 	@Get(':id')
 	async findOne(@Param('id') id: string): Promise<GeoPredioGeneral> {

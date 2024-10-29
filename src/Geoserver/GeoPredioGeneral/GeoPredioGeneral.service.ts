@@ -14,7 +14,8 @@ export class GeoPredioGeneralService {
 		page: number = 1,
 		limit: number = 10,
 		filters: Partial<GeoPredioGeneral> = {},
-		search?: string,
+    search?: string,
+    selectedFields?: (keyof GeoPredioGeneral)[] // Nuevo parámetro para seleccionar campos específicos
 	): Promise<{
 		data: GeoPredioGeneral[];
 		total: number;
@@ -31,30 +32,41 @@ export class GeoPredioGeneralService {
 
 			// Aplicar búsqueda general si existe
 			if (search) {
-				query.where('(geoPredioGeneral.claveCatastral ILIKE :search OR '+ 'geoPredioGeneral.claveCatastralAnterior ILIKE :search OR ' + 'geoPredioGeneral.propietario ILIKE :search OR ' + 'geoPredioGeneral.tipoPredio ILIKE :search )', {
-					search: `%${search}%`,
-				});
+				query.where(
+					'(geoPredioGeneral.claveCatastral ILIKE :search OR ' +
+						'geoPredioGeneral.claveCatastralAnterior ILIKE :search OR ' +
+						'geoPredioGeneral.propietario ILIKE :search OR ' +
+						'geoPredioGeneral.tipoPredio ILIKE :search )',
+					{
+						search: `%${search}%`,
+					},
+				);
 			}
 
-      // Aplicar filtros específicos
-      console.log('Filtros:', filters);
-      Object.keys(filters).forEach((key) => {
-        if (filters[key] !== undefined && filters[key] !== null && filters[key] !== '') {
-          // Manejo especial para campos numéricos
-          if (key === 'area' || key === 'id') {
-            query.andWhere(`geoPredioGeneral.${key} = :${key}`, {[key]: filters[key]});
-          }
-          // Búsqueda parcial para campos de texto
-          else {
-            query.andWhere(`geoPredioGeneral.${key} ILIKE :${key}`, {
-              [key]: `%${filters[key]}%`,
-            });
-          }
-        }
-      });
+			// Aplicar filtros específicos
+			console.log('Filtros:', filters);
+			Object.keys(filters).forEach((key) => {
+				if (filters[key] !== undefined && filters[key] !== null && filters[key] !== '') {
+					// Manejo especial para campos numéricos
+					if (key === 'area' || key === 'id') {
+						query.andWhere(`geoPredioGeneral.${key} = :${key}`, {[key]: filters[key]});
+					}
+					// Búsqueda parcial para campos de texto
+					else {
+						query.andWhere(`geoPredioGeneral.${key} ILIKE :${key}`, {
+							[key]: `%${filters[key]}%`,
+						});
+					}
+				}
+			});
 
 			// Agregar ordenamiento
 			query.orderBy('geoPredioGeneral.id', 'ASC');
+
+			// Aplicar selección de campos
+			if (selectedFields && selectedFields.length > 0) {
+				query.select(selectedFields.map((field) => `geoPredioGeneral.${field}`));
+			}
 
 			// Aplicar paginación
 			const skip = (page - 1) * limit;
