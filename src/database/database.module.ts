@@ -2,6 +2,11 @@ import {Module} from '@nestjs/common';
 import {TypeOrmModule} from '@nestjs/typeorm';
 import {ConfigModule, ConfigService} from '@nestjs/config';
 import { UbiTanques } from 'src/entities/entities/UbiTanques';
+import { AreaTanques } from 'src/entities/entities/AreaTanques';
+import { GeoPredioGeneral } from 'src/entities/entities/GeoPredioGeneral';
+import { LineaConducciN } from 'src/entities/entities/LineaConducciN';
+import { SpatialRefSys } from 'src/entities/entities/SpatialRefSys';
+import { TubWinchele } from 'src/entities/entities/TubWinchele';
 
 @Module({
 	imports: [
@@ -18,7 +23,7 @@ import { UbiTanques } from 'src/entities/entities/UbiTanques';
 				password: configService.get<string>('POSTGRES_PASSWORD'),
 				database: configService.get<string>('POSTGRES_DB'),
 				schema: configService.get<string>('POSTGRES_SCHEMA'),
-				entities: [UbiTanques], // Asegúrate de especificar correctamente el path a tus entidades
+				entities: [AreaTanques, GeoPredioGeneral, LineaConducciN, SpatialRefSys, TubWinchele, UbiTanques], // Asegúrate de especificar correctamente el path a tus entidades
 				synchronize: false, // Solo para desarrollo, en producción desactiva esto
 			}),
 			inject: [ConfigService],
