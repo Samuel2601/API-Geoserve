@@ -63,7 +63,8 @@ export class GeoPredioGeneralService {
 			// Agregar ordenamiento
 			query.orderBy('geoPredioGeneral.id', 'ASC');
 
-			// Aplicar selección de campos
+      // Aplicar selección de campos
+      console.log('seleccionados:', selectedFields);
 			if (selectedFields && selectedFields.length > 0) {
 				query.select(selectedFields.map((field) => `geoPredioGeneral.${field}`));
 			}
