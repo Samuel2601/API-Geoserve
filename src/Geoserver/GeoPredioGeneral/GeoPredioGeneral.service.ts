@@ -14,8 +14,8 @@ export class GeoPredioGeneralService {
 		page: number = 1,
 		limit: number = 10,
 		filters: Partial<GeoPredioGeneral> = {},
-    search?: string,
-    selectedFields?: (keyof GeoPredioGeneral)[] // Nuevo parámetro para seleccionar campos específicos
+		search?: string,
+		selectedFields?: (keyof GeoPredioGeneral)[], // Nuevo parámetro para seleccionar campos específicos
 	): Promise<{
 		data: GeoPredioGeneral[];
 		total: number;
@@ -63,8 +63,8 @@ export class GeoPredioGeneralService {
 			// Agregar ordenamiento
 			query.orderBy('geoPredioGeneral.id', 'ASC');
 
-      // Aplicar selección de campos
-      console.log('seleccionados:', selectedFields);
+			// Aplicar selección de campos
+			console.log('seleccionados:', selectedFields);
 			if (selectedFields && selectedFields.length > 0) {
 				query.select(selectedFields.map((field) => `geoPredioGeneral.${field}`));
 			}

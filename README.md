@@ -62,6 +62,10 @@ $ pnpm run test:cov
 $ npx typeorm-model-generator -h 154.38.182.200 -p 5432 -d sarg_catastro -u catastro -x 'Teclado2024/*' -e postgres -o ./src/entities -s public
 
 
+## CONSULTA DE API EXAMPLE
+
+$http://localhost:3000/geo-predio-general?page=1&limit=10&fields=id,claveCatastral,claveCatastralAnterior,tipoPredio,uso,agua,sanitarias,energia,documentoPropietario,propietario,tipoPersona,personeria,area,poligono
+
 ## Resources
 
 Check out a few resources that may come in handy when working with NestJS:
