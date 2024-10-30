@@ -63,13 +63,14 @@ $ pnpm run test:cov
 ```bash
 #Captura de entidades a un servidor externo con npx
 $ npx typeorm-model-generator -h 154.38.182.200 -p 5432 -d sarg_catastro -u catastro -x 'Teclado2024/*' -e postgres -o ./src/entities -s public
-
+```
 
 ## CONSULTA DE API EXAMPLE
+
 ```bash
 #Ejemplo de contula para GET a findAll, con los campos de paginación, array de busqueda, busqueda directa y selección de columnnas
 $http://localhost:3000/geo-predio-general?page=1&limit=1&filter=[claveCatastralAnterior=0810022012]&search=0810022012&fields=id,poligono
-
+```
 
 ## Resources
 
@@ -85,7 +86,8 @@ Check out a few resources that may come in handy when working with NestJS:
 
 ## Support
 
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
+Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please
+[read more here](https://docs.nestjs.com/support).
 
 ## Stay in touch
 
@@ -96,3 +98,7 @@ Nest is an MIT-licensed open source project. It can grow thanks to the sponsors 
 ## License
 
 Nest is [MIT licensed](https://github.com/nestjs/nest/blob/master/LICENSE).
+
+```
+
+```
