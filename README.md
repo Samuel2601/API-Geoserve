@@ -59,12 +59,17 @@ $ pnpm run test:cov
 ```
 
 ## API schema GEOSERVER
+
+```bash
+#Captura de entidades a un servidor externo con npx
 $ npx typeorm-model-generator -h 154.38.182.200 -p 5432 -d sarg_catastro -u catastro -x 'Teclado2024/*' -e postgres -o ./src/entities -s public
 
 
 ## CONSULTA DE API EXAMPLE
+```bash
+#Ejemplo de contula para GET a findAll, con los campos de paginación, array de busqueda, busqueda directa y selección de columnnas
+$http://localhost:3000/geo-predio-general?page=1&limit=1&filter=[claveCatastralAnterior=0810022012]&search=0810022012&fields=id,poligono
 
-$http://localhost:3000/geo-predio-general?page=1&limit=10&fields=id,claveCatastral,claveCatastralAnterior,tipoPredio,uso,agua,sanitarias,energia,documentoPropietario,propietario,tipoPersona,personeria,area,poligono
 
 ## Resources
 
