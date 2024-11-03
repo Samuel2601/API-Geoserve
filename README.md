@@ -43,6 +43,9 @@ $ pnpm run start:dev
 
 # production mode
 $ pnpm run start:prod
+
+# start watch
+$ nest start --watch
 ```
 
 ## Run tests

@@ -13,4 +13,11 @@ MAIL_PASS=example_password              // Contraseña del servicio SMTP
 
 
 //Socket sesion
-SECRET_SESSION='secreto'
+SECRET_SESSION = 'secreto'
+
+POSTGRES_HOST
+POSTGRES_PORT
+POSTGRES_USER
+POSTGRES_PASSWORD
+POSTGRES_DB
+POSTGRES_SCHEMA
