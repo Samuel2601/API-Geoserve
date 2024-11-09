@@ -64,7 +64,6 @@ export class GeoPredioGeneralService {
 			query.orderBy('geoPredioGeneral.id', 'ASC');
 
 			// Aplicar selección de campos
-			console.log('seleccionados:', selectedFields);
 			if (selectedFields && selectedFields.length > 0) {
 				query.select(selectedFields.map((field) => `geoPredioGeneral.${field}`));
 			}
