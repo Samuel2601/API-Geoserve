@@ -1,5 +1,6 @@
 import {BadRequestException, Injectable, NotFoundException} from '@nestjs/common';
 import {InjectRepository} from '@nestjs/typeorm';
+import {CoordinateService} from 'src/common/coordinate/coordinate.service';
 import {GeoPredioGeneral} from 'src/entities/entities/GeoPredioGeneral';
 import {Repository} from 'typeorm';
 
@@ -8,6 +9,7 @@ export class GeoPredioGeneralService {
 	constructor(
 		@InjectRepository(GeoPredioGeneral)
 		private readonly geoPredioGeneralRepository: Repository<GeoPredioGeneral>,
+		private readonly convergerService: CoordinateService,
 	) {}
 
 	async findAll(
@@ -73,11 +75,13 @@ export class GeoPredioGeneralService {
 			query.skip(skip).take(limit);
 
 			// Ejecutar consulta
-			const [data, total] = await query.getManyAndCount();
+			const [rawData, total] = await query.getManyAndCount();
 
 			// Calcular total de páginas
 			const totalPages = Math.ceil(total / limit);
 
+			const data = this.convergerService.convertCoordinates(rawData, 'poligono');
+			console.log(totalPages);
 			return {
 				data,
 				total,

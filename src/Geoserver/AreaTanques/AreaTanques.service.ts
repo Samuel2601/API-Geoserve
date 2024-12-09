@@ -1,5 +1,6 @@
 import {BadRequestException, Injectable, NotFoundException} from '@nestjs/common';
 import {InjectRepository} from '@nestjs/typeorm';
+import { CoordinateService } from 'src/common/coordinate/coordinate.service';
 import {AreaTanques} from 'src/entities/entities/AreaTanques';
 import {Repository} from 'typeorm';
 
@@ -8,6 +9,7 @@ export class AreaTanquesService {
 	constructor(
 		@InjectRepository(AreaTanques)
 		private readonly areaTanquesRepository: Repository<AreaTanques>,
+		private readonly convergerService: CoordinateService,
 	) {}
 
 	async findAll(
@@ -73,11 +75,13 @@ export class AreaTanquesService {
 			query.skip(skip).take(limit);
 
 			// Ejecutar consulta
-			const [data, total] = await query.getManyAndCount();
+			const [rawData, total] = await query.getManyAndCount();
+
+			const data = this.convergerService.convertCoordinates(rawData);
 
 			// Calcular total de páginas
 			const totalPages = Math.ceil(total / limit);
-
+			console.log(total);
 			return {
 				data,
 				total,
